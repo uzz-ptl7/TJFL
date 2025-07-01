@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ show: false, mobileMenuOpen: false }" x-init="setTimeout(() => show = true, 100)">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrueGreen Justice Foundation of Liberia (TJFL)</title>
+    <meta name="description"
+        content="TrueGreen Justice Foundation of Liberia (TJFL) promotes environmental protection, sustainable agriculture, and social equity in Liberia." />
+    <meta name="keywords"
+        content="Environmental Justice, Liberia, Food Security, Sustainable Agriculture, Non-Profit" />
+    <meta name="author" content="TrueGreen Justice Foundation of Liberia" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="TrueGreen Justice Foundation of Liberia (TJFL)" />
+    <meta property="og:description" content="Advancing Environmental Justice & Food Security in Liberia" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tjfl.org" />
+    <meta property="og:image" content="https://tjfl.org/og-image.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TrueGreen Justice Foundation of Liberia (TJFL)" />
+    <meta name="twitter:description" content="Advancing Environmental Justice & Food Security in Liberia" />
+    <meta name="twitter:image" content="https://tjfl.org/twitter-image.jpg" />
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/@popperjs/core@2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 6rem;
+            /* ✅ Fix section cutoff by sticky header */
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(1rem);
+            transition-property: opacity, transform;
+            transition-duration: 700ms;
+            transition-timing-function: ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a:focus,
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.8);
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            z-index: 100;
+            background: #16a34a;
+            color: white;
+            padding: 8px 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            left: 10px;
+            top: 10px;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-green-50 text-green-900 font-sans" x-data="{ show: false, mobileMenuOpen: false }"
+    x-init="setTimeout(() => show = true, 100)">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-blue-700 text-white shadow-lg sticky top-0 z-50" role="banner">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+
+            <div>
+                <img src="./tjfl-logo.jpg" alt="TJFL Logo" class="rounded-full transform duration-500 hover:scale-110"
+                    width="80" height="80" />
+            </div>
+
+            <!-- Desktop nav -->
+            <nav aria-label="Primary navigation" class="hidden md:flex space-x-6">
+                <a href="#about"
+                    class="hover:underline hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded">About</a>
+                <a href="#structure"
+                    class="hover:underline hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded">Structure</a>
+                <a href="#work"
+                    class="hover:underline hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded">Our
+                    Work</a>
+                <a href="#involved"
+                    class="hover:underline hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded">Get
+                    Involved</a>
+                <a href="#gallery"
+                    class="hover:underline hover:text-green-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-400 rounded">Gallery</a>
+            </nav>
+
+            <!-- Mobile hamburger button -->
+            <button type="button" @click="mobileMenuOpen = !mobileMenuOpen" :aria-expanded="mobileMenuOpen.toString()"
+                aria-controls="mobile-menu" aria-label="Toggle menu"
+                class="md:hidden focus:outline-none focus:ring-2 focus:ring-green-400 rounded text-white">
+                <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile nav menu -->
+        <nav id="mobile-menu" x-show="mobileMenuOpen" @click.outside="mobileMenuOpen = false"
+            class="md:hidden bg-green-700 text-white px-4 py-5 space-y-4 shadow-lg transition max-h-screen overflow-auto"
+            role="menu" aria-label="Mobile Primary navigation" x-cloak>
+            <a href="#about" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">About</a>
+            <a href="#structure" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">Structure</a>
+            <a href="#work" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">Our
+                Work</a>
+            <a href="#involved" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">Get
+                Involved</a>
+            <a href="#gallery" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">Gallery</a>
+            <a href="#contact" @click="mobileMenuOpen = false" role="menuitem"
+                class="block hover:underline hover:text-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 rounded">Contact</a>
+        </nav>
+    </header>
+
+    <main id="main-content" class="focus:outline-none">
+
+        <!-- Hero -->
+        <section class="bg-gradient-to-r from-green-700 to-blue-700 text-white py-24 text-center fade-in"
+            :class="{ 'show': show }">
+            <div class="container mx-auto px-4">
+                <h1 class="text-5xl font-extrabold mb-6 drop-shadow-lg">TrueGreen Justice Foundation of Liberia</h1>
+                <p class="text-2xl mb-8 max-w-xl mx-auto drop-shadow-md">Advancing Environmental Justice & Food Security
+                    in Liberia</p>
+                <div class="space-x-6 flex sm:flex-row justify-center">
+                    <a href="#about"
+                        class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-400">Learn
+                        More</a>
+                    <a href="#involved"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400">Get
+                        Involved</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-green-50 fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-green-800">About Us</h2>
+                <p class="max-w-3xl mx-auto mb-8 text-green-900">
+                    True Green Justice Foundation of Liberia (TJFL) is a registered non-profit dedicated to promoting
+                    environmental protection, sustainable agriculture, and social equity. Located in Buchanan City,
+                    Grand Bassa County, TJFL operates under the Associations Law of Liberia and is committed to
+                    empowering communities through education, advocacy, and community-led initiatives.
+                </p>
+                <p class="text-sm text-green-700">Registered Office: Tubman Street, Buchanan City, Grand Bassa
+                    County<br />Registered Agent: Gerald G. Nickerson</p>
+            </div>
+        </section>
+
+        <!-- Organizational Structure Section -->
+        <section id="structure" class="py-20 bg-blue-50 fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-8 text-blue-800">Organizational Structure</h2>
+                <p class="max-w-4xl mx-auto mb-8 text-blue-900">
+                    TJFL is governed by a Board of Directors (5–15 members) and led by an Executive Director.
+                    Operational and programmatic functions are overseen by a Director of Programs and Projects and
+                    supported by specialized coordinators in community organizing, environmental health, agriculture,
+                    education, communications, and research.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-700 mb-2">Board of Directors</h3>
+                        <ul class="list-disc list-inside text-green-900">
+                            <li>Chair, Vice Chair, Secretary, Treasurer</li>
+                            <li>Community Reps (Women, Youth, Elders)</li>
+                        </ul>
+                        <h3 class="text-xl font-semibold text-green-700 mt-4 mb-2">Executive Leadership</h3>
+                        <ul class="list-disc list-inside text-green-900">
+                            <li>Executive Director</li>
+                            <li>Director of Programs and Projects</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-700 mb-2">Program Staff</h3>
+                        <ul class="list-disc list-inside text-green-900">
+                            <li>Community Organizing Coordinator</li>
+                            <li>Policy Advocate</li>
+                            <li>Environmental Health Coordinator</li>
+                            <li>Data & Research Analyst</li>
+                            <li>Agriculture Program Coordinator</li>
+                            <li>Community Awareness & Education Coordinator</li>
+                            <li>Communications & Outreach Specialist</li>
+                            <li>Administrative Assistant</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 max-w-4xl mx-auto text-left">
+                    <h3 class="text-xl font-semibold text-green-700 mb-2">Community Advisory Council & Volunteers</h3>
+                    <ul class="list-disc list-inside text-green-900">
+                        <li>Community Advisory Council (7–13 members)</li>
+                        <li>Volunteers coordinated by staff or a part-time Volunteer Coordinator</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Work Section -->
+        <section id="work" class="py-20 bg-green-100 text-center fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-12 text-green-800">Our Work</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div
+                        class="bg-white border-2 border-green-600 shadow-lg p-8 rounded transform transition-transform hover:scale-105">
+                        <div class="text-green-700 text-5xl mb-4" aria-hidden="true">🌿</div>
+                        <h3 class="text-2xl font-semibold mb-3 text-green-800">Environmental Advocacy</h3>
+                        <p class="text-green-900">We promote conservation, enforce environmental policies, and support
+                            community-led ecological initiatives.</p>
+                    </div>
+                    <div
+                        class="bg-white border-2 border-green-600 shadow-lg p-8 rounded transform transition-transform hover:scale-105">
+                        <div class="text-green-700 text-5xl mb-4" aria-hidden="true">🌾</div>
+                        <h3 class="text-2xl font-semibold mb-3 text-green-800">Food Security</h3>
+                        <p class="text-green-900">Supporting sustainable agriculture and increasing access to nutritious
+                            food for marginalized communities.</p>
+                    </div>
+                    <div
+                        class="bg-white border-2 border-green-600 shadow-lg p-8 rounded transform transition-transform hover:scale-105">
+                        <div class="text-green-700 text-5xl mb-4" aria-hidden="true">⚖️</div>
+                        <h3 class="text-2xl font-semibold mb-3 text-green-800">Environmental Justice</h3>
+                        <p class="text-green-900">Addressing environmental inequities through legal support and fair
+                            policy advocacy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Volunteer Signup Form -->
+        <section id="involved" class="py-20 bg-blue-50 fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4 max-w-2xl text-center">
+                <h2 class="text-4xl font-bold mb-8 text-blue-800">Volunteer with Us</h2>
+                <form class="bg-white p-8 rounded shadow-lg space-y-6 border-2 border-blue-600"
+                    aria-label="Volunteer signup form">
+                    <input type="text" placeholder="Full Name" aria-label="Full Name" required
+                        class="w-full px-5 py-3 border border-blue-300 rounded focus:outline-none focus:ring-4 focus:ring-blue-400" />
+                    <input type="email" placeholder="Email Address" aria-label="Email Address" required
+                        class="w-full px-5 py-3 border border-blue-300 rounded focus:outline-none focus:ring-4 focus:ring-blue-400" />
+                    <select aria-label="Area of Interest" required
+                        class="w-full px-5 py-3 border border-blue-300 rounded focus:outline-none focus:ring-4 focus:ring-blue-400">
+                        <option value="" disabled selected>Area of Interest</option>
+                        <option>Environmental Advocacy</option>
+                        <option>Community Awareness</option>
+                        <option>Sustainable Agriculture</option>
+                        <option>Legal Support</option>
+                    </select>
+                    <textarea rows="4" placeholder="Tell us why you'd like to volunteer..."
+                        aria-label="Volunteer motivation" required
+                        class="w-full px-5 py-3 border border-blue-300 rounded focus:outline-none focus:ring-4 focus:ring-blue-400"></textarea>
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-8 py-3 rounded hover:bg-blue-700 transition shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-700">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 bg-green-50 fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-12 text-green-800">Gallery</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <img src="#" alt="Project Photo" loading="lazy"
+                        class="rounded shadow-lg hover:scale-110 transition duration-300 border-4 border-green-600" />
+                    <img src="#" alt="Community Work" loading="lazy"
+                        class="rounded shadow-lg hover:scale-110 transition duration-300 border-4 border-green-600" />
+                    <video controls preload="none"
+                        class="rounded shadow-lg w-full hover:scale-110 transition duration-300 border-4 border-green-600"
+                        aria-label="Project video">
+                        <source src="#" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-blue-50 fade-in" :class="{ 'show': show }">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6 text-blue-800">Contact Us</h2>
+                <p class="mb-2 text-blue-900 font-semibold">Email: <a href="mailto:info@tjfl.org"
+                        class="text-blue-700 hover:underline">info@tjfl.org</a></p>
+                <p class="mb-8 text-blue-900 font-semibold">Phone: <a href="tel:+231XXXXXXXX"
+                        class="text-blue-700 hover:underline">+231-XXXXXXXX</a></p>
+                <div class="mt-8">
+                    <iframe src="https://www.google.com/maps?q=Buchanan+City,+Liberia&output=embed"
+                        class="w-full h-96 border-4 border-blue-600 rounded shadow-lg" allowfullscreen
+                        aria-label="Map showing location of TrueGreen Justice Foundation of Liberia"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-green-700 to-blue-700 text-white py-8" role="contentinfo">
+        <div class="container mx-auto px-4 text-center text-sm tracking-wide font-semibold drop-shadow-md">
+            <p>&copy; 2025 TrueGreen Justice Foundation of Liberia. All rights reserved.</p>
+            <p class="mt-3">Registered Office: Tubman Street, Buchanan City, Grand Bassa County, Liberia | Registered
+                Agent: Gerald G. Nickerson</p>
+            <p class="mt-1">Incorporated under the Associations Law of Liberia | Articles of Incorporation filed with
+                the Ministry of Commerce and Industry</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
